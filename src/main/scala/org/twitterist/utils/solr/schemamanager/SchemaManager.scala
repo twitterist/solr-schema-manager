@@ -18,12 +18,4 @@ case class SchemaManager(
     //TODO: implementation
     this
   }
-
-  /**
-   * @inheritdoc
-   */
-  override def resetCustomFields(): SchemaOperations = {
-    //TODO: implementation
-    this
-  }
 }

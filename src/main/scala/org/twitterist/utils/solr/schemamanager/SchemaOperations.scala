@@ -7,6 +7,9 @@ import org.twitterist.utils.solr.schemamanager.schema._
  */
 trait SchemaOperations {
 
+  /**
+   * Holds a list of added field objects
+   */
   protected var fields: List[Field] = List()
 
   /**
@@ -19,8 +22,8 @@ trait SchemaOperations {
    * @param defaultValue The default value if the field is not filled while indexing
    * @param options Defines additional field options
    */
-  def addField(name: String, fieldType: String, defaultValue: Option[String] = None, options: Option[FieldOptions] = None) = {
-    fields :+ Field(false, name, fieldType, options)
+  def addField(name: String, fieldType: String, defaultValue: String = "", options: Option[FieldOptions] = None) = {
+    fields :+ createField(false, name, fieldType, defaultValue, options)
     this
   }
 
@@ -34,8 +37,8 @@ trait SchemaOperations {
    * @param defaultValue The default value if the field is not filled while indexing
    * @param options Defines additional field options
    */
-  def addDynamicField(pattern: String, fieldType: String, defaultValue: Option[String] = None, options: Option[FieldOptions] = None) = {
-    fields :+ Field(true, pattern, fieldType, options)
+  def addDynamicField(pattern: String, fieldType: String, defaultValue: String = "", options: Option[FieldOptions] = None) = {
+    fields :+ createField(true, pattern, fieldType, defaultValue, options)
     this
   }
 
@@ -56,10 +59,29 @@ trait SchemaOperations {
     this
   }
 
-  /**
-   * Removes all custom field definitions made by this manager
-   *
-   * @return Own [[SchemaOperations]] instance to ensure fluid interface
-   */
-  def resetCustomFields(): SchemaOperations
+  private def createField(dynamic: Boolean, pattern: String, fieldType: String, defaultValue: String = "", opt: Option[FieldOptions] = None): Field = {
+    opt match {
+      case o: Some[FieldOptions] => Field(
+        dynamic = dynamic,
+        name = pattern,
+        fieldType = fieldType,
+        defaultValue = defaultValue,
+        indexed = o.get.indexed, //TODO: find better option for propperty-mapping
+        stored = o.get.stored,
+        docValues = o.get.docValues,
+        sortMissingFirst = o.get.sortMissingFirst,
+        sortMissingLast = o.get.sortMissingLast,
+        multiValued = o.get.multiValued,
+        omitNorms = o.get.omitNorms,
+        omitTermFreqAndPositions = o.get.omitTermFreqAndPositions,
+        omitPositions = o.get.omitPositions,
+        termVectors = o.get.termVectors,
+        termPositions = o.get.termPositions,
+        termOffsets = o.get.termOffsets,
+        termPayloads = o.get.termPayloads,
+        required = o.get.required
+      )
+      case _ => Field(dynamic = true, name = pattern, fieldType = fieldType)
+    }
+  }
 }

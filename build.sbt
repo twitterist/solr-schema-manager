@@ -9,7 +9,8 @@ scalaVersion := "2.10.4"
 crossScalaVersions := Seq("2.10.4", "2.11.2")
 
 libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest" % "3.0.0-M9" % "test"
+  "org.scalatest" %% "scalatest" % "3.0.0-M9" % "test",
+  "net.databinder.dispatch" %% "dispatch-core" % "0.11.2"
 )
 
 GithubRelease.repo := "twitterist/solr-schema-manager"

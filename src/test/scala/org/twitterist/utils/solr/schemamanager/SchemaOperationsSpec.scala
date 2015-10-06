@@ -7,10 +7,6 @@ import org.twitterist.utils.solr.schemamanager.schema._
 class SchemaOperationsSpec extends WordSpec with MustMatchers {
 
   object SchemaOps extends SchemaOperations {
-    override def resetCustomFields(): _root_.org.twitterist.utils.solr.schemamanager.SchemaOperations = {
-      this
-    }
-
     override def commit(): _root_.org.twitterist.utils.solr.schemamanager.SchemaOperations = {
       this
     }
@@ -19,36 +15,49 @@ class SchemaOperationsSpec extends WordSpec with MustMatchers {
   "Method addField" must {
     "be callable multiple times (fluid interface)" in {
       SchemaOps
-        .addField("foo", "string", Some("default"), None)
-        .addField("bar", "string", Some("default"), None)
-        .addField("baz", "string", Some("default"), None) shouldBe a [SchemaOperations]
+        .addField("foo", "string", "default", None)
+        .addField("bar", "string", "default", None)
+        .addField("baz", "string", "default", None) shouldBe a [SchemaOperations]
     }
     "be callable without providing additional field options" in {
-      SchemaOps.addField("foo", "string", Some("default")) shouldBe a [SchemaOperations]
+      SchemaOps.addField("foo", "string", "default") shouldBe a [SchemaOperations]
     }
     "be callable without providing default value" in {
       SchemaOps.addField("foo", "string") shouldBe a [SchemaOperations]
     }
     "take additional field options" in {
-      SchemaOps.addField("foo", "string", None, Some(FieldOptions(indexed = Some(false)))) shouldBe a [SchemaOperations]
+
+      // specify field options
+      val customFieldOptions = new FieldOptions {
+        override val indexed = Some(true)
+      }
+
+      SchemaOps.addField("foo", "string", "", Some(customFieldOptions)) shouldBe a [SchemaOperations]
     }
   }
 
   "Method addDynamicField" must {
     "be callable multiple times (fluid interface)" in {
       SchemaOps
-        .addDynamicField("foo", "string", Some("default"), None)
-        .addDynamicField("bar", "string", Some("default"), None)
-        .addDynamicField("baz", "string", Some("default"), None) shouldBe a [SchemaOperations]
+        .addDynamicField("foo", "string", "default", None)
+        .addDynamicField("bar", "string", "default", None)
+        .addDynamicField("baz", "string", "default", None) shouldBe a [SchemaOperations]
     }
     "be callable without providing additional field options" in {
-      SchemaOps.addDynamicField("foo", "string", Some("default")) shouldBe a [SchemaOperations]
+      SchemaOps.addDynamicField("foo", "string", "default") shouldBe a [SchemaOperations]
     }
     "be callable without providing default value" in {
       SchemaOps.addDynamicField("foo", "string") shouldBe a [SchemaOperations]
     }
     "take additional field options" in {
-      SchemaOps.addDynamicField("foo", "string", None, Some(FieldOptions(indexed = Some(false)))) shouldBe a [SchemaOperations]
+
+      // specify field options
+      val customFieldOptions = new FieldOptions {
+        override val indexed = Some(false)
+        override val stored = Some(true)
+      }
+
+      SchemaOps.addDynamicField("foo", "string", "", Some(customFieldOptions)) shouldBe a [SchemaOperations]
     }
   }
 }
