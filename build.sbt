@@ -1,6 +1,6 @@
 name := """solr-schema-manager"""
 organization := "org.twitterist"
-version := "0.1-SNAPSHOT"
+version := "0.0.1"
 description:= "A schema manager for Apache Solr written in Scala. Utilizes the Solr 5 schema api to create and update schema definitions"
 licenses += ("MIT", url("http://opensource.org/licenses/MIT"))
 
@@ -13,7 +13,7 @@ libraryDependencies ++= Seq(
 )
 
 bintrayOrganization := Some("twitterist")
-bintrayRepository := "scala-utils"
+bintrayRepository := "maven"
 bintrayReleaseOnPublish in ThisBuild := false
 
 com.typesafe.sbt.SbtGit.versionWithGit
