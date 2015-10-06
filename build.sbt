@@ -12,6 +12,9 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "3.0.0-M9" % "test"
 )
 
+GithubRelease.repo := "twitterist/solr-schema-manager"
+GithubRelease.prerelease := true
+
 bintrayOrganization := Some("twitterist")
 bintrayRepository := "maven"
 bintrayReleaseOnPublish in ThisBuild := false

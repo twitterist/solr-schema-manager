@@ -1,0 +1,15 @@
+v0.0.1
+======
+
+This is a pre-release tro test the build workkflow. Nothing functional yet!
+
+Changes
+-------
+
+* Defined public API (partially)
+* Wrote some first specs
+
+Deprecations
+------------
+
+**none**
