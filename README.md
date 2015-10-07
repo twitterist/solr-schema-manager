@@ -1,5 +1,5 @@
-Solr Schema Manager
-===================
+[WIP] Solr Schema Manager
+=========================
 
 [![Build Status](https://travis-ci.org/twitterist/solr-schema-manager.svg?branch=master)](https://travis-ci.org/twitterist/solr-schema-manager)  [ ![Download](https://api.bintray.com/packages/twitterist/maven/solr-schema-manager/images/download.svg) ](https://bintray.com/twitterist/maven/solr-schema-manager/_latestVersion)
 
@@ -17,7 +17,7 @@ Installation
 
 Add the jcenter resolver and twitterist library dependency to your ```build.sbt```:
 
-```
+```scala
 resolvers += Resolver.jcenterRepo
 
 libraryDependencies += "org.twitterist" %% "solr-schema-manager" % "VERSION"
@@ -27,7 +27,7 @@ libraryDependencies += "org.twitterist" %% "solr-schema-manager" % "VERSION"
 
 Add the maven url and dependency to your ```build.gralde```:
 
-```
+```groovy
 repositories { 
     maven { 
         url "http://dl.bintray.com/twitterist/maven" 
