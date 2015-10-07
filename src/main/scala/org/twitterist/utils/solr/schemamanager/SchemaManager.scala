@@ -1,5 +1,6 @@
 package org.twitterist.utils.solr.schemamanager
 
+import org.twitterist.utils.solr.schemamanager.schema.Field
 
 /**
  * A schema manager instance
