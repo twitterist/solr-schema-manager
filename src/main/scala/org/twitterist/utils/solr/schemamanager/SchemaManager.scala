@@ -7,15 +7,15 @@ package org.twitterist.utils.solr.schemamanager
  * This is the main entry point
  */
 case class SchemaManager(
-  override val apiEndpoint: String = "http://localhost:8983/solr/gettingstarted",
-  override val warnOnDefinitionOverride: Boolean = true
+  override val url: String = "http://localhost:8983/solr/gettingstarted",
+  override val allowOverride: Boolean = true
 ) extends SchemaOperations with Settings {
 
   /**
    * @inheritdoc
    */
   override def commit(): SchemaOperations = {
-    //TODO: implementation
+    throw new SchemaOverrideException()
     this
   }
 }

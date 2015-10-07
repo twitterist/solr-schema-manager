@@ -8,10 +8,11 @@ trait Settings {
   /**
    * The URL of the Solr instance to manage
    */
-  val apiEndpoint: String = "http://localhost:8983/solr/gettingstarted"
+  val url: String = "http://localhost:8983/solr/gettingstarted"
 
   /**
-   * Throw a warning when definitions (like fields) are beeing overriden
+   * Supresses [[org.twitterist.utils.solr.schemamanager.SchemaOverrideException]] if some schema part
+   * is going to be overridden
    */
-  val warnOnDefinitionOverride: Boolean = true
+  val allowOverride: Boolean = false
 }

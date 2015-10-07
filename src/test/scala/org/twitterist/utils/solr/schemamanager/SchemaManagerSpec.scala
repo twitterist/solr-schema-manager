@@ -5,12 +5,14 @@ import org.scalatest.Matchers._
 
 class SchemaManagerSpec extends WordSpec with MustMatchers {
 
-  "instance" must {
+  "Instance" must {
     "implement SchemaOperations" in {
       SchemaManager() shouldBe a [SchemaOperations]
     }
     "support Settings" in {
       SchemaManager() shouldBe a [Settings]
+      SchemaManager(url = "http://foo.bar") shouldBe a [Settings]
+      SchemaManager(url = "http://foo.bar", allowOverride = true) shouldBe a [Settings]
     }
   }
 }

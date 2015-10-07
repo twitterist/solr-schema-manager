@@ -1,6 +1,9 @@
 package org.twitterist.utils.solr.schemamanager.client
 
-class DispatchHttpClient extends HttpClient {
+private[schemamanager] object DispatchHttpClient extends HttpClient {
+
+  def apply() = DispatchHttpClient
+
   def addField(field: org.twitterist.utils.solr.schemamanager.schema.Field): Unit = {
 
   }
