@@ -21,5 +21,3 @@ bintrayRepository := "maven"
 bintrayReleaseOnPublish in ThisBuild := false
 
 com.typesafe.sbt.SbtGit.versionWithGit
-
-scalariformSettingsWithIt

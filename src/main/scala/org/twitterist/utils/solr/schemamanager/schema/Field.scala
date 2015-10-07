@@ -7,25 +7,24 @@ package org.twitterist.utils.solr.schemamanager.schema
  * @see [[FieldOptions]]
  */
 case class Field(
-                  override val dynamic: Boolean,
-                  override val name: String,
-                  override val fieldType: String,
-                  override val defaultValue: String = "",
-                  override val indexed: Option[Boolean] = None,
-                  override val stored: Option[Boolean] = None,
-                  override val docValues: Option[Boolean] = None,
-                  override val sortMissingFirst: Option[Boolean] = None,
-                  override val sortMissingLast: Option[Boolean] = None,
-                  override val multiValued: Option[Boolean] = None,
-                  override val omitNorms: Option[Boolean] = None,
-                  override val omitTermFreqAndPositions: Option[Boolean] = None,
-                  override val omitPositions: Option[Boolean] = None,
-                  override val termVectors: Option[Boolean] = None,
-                  override val termPositions: Option[Boolean] = None,
-                  override val termOffsets: Option[Boolean] = None,
-                  override val termPayloads: Option[Boolean] = None,
-                  override val required: Option[Boolean] = None
-                  ) extends FieldDefinition with FieldOptions
+  override val dynamic: Boolean,
+  override val name: String,
+  override val fieldType: String,
+  override val defaultValue: String = "",
+  override val indexed: Option[Boolean] = None,
+  override val stored: Option[Boolean] = None,
+  override val docValues: Option[Boolean] = None,
+  override val sortMissingFirst: Option[Boolean] = None,
+  override val sortMissingLast: Option[Boolean] = None,
+  override val multiValued: Option[Boolean] = None,
+  override val omitNorms: Option[Boolean] = None,
+  override val omitTermFreqAndPositions: Option[Boolean] = None,
+  override val omitPositions: Option[Boolean] = None,
+  override val termVectors: Option[Boolean] = None,
+  override val termPositions: Option[Boolean] = None,
+  override val termOffsets: Option[Boolean] = None,
+  override val termPayloads: Option[Boolean] = None,
+  override val required: Option[Boolean] = None) extends FieldDefinition with FieldOptions
 
 /**
  * Properties for field definitions
