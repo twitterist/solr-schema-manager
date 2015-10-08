@@ -7,24 +7,25 @@ package org.twitterist.utils.solr.schemamanager.schema
  * @see [[FieldOptions]]
  */
 case class Field(
-  override val dynamic: Boolean,
-  override val name: String,
-  override val fieldType: String,
-  override val defaultValue: String = "",
-  override val indexed: Option[Boolean] = None,
-  override val stored: Option[Boolean] = None,
-  override val docValues: Option[Boolean] = None,
-  override val sortMissingFirst: Option[Boolean] = None,
-  override val sortMissingLast: Option[Boolean] = None,
-  override val multiValued: Option[Boolean] = None,
-  override val omitNorms: Option[Boolean] = None,
-  override val omitTermFreqAndPositions: Option[Boolean] = None,
-  override val omitPositions: Option[Boolean] = None,
-  override val termVectors: Option[Boolean] = None,
-  override val termPositions: Option[Boolean] = None,
-  override val termOffsets: Option[Boolean] = None,
-  override val termPayloads: Option[Boolean] = None,
-  override val required: Option[Boolean] = None) extends FieldDefinition with FieldOptions
+    override val dynamic: Boolean,
+    override val name: String,
+    override var fieldType: String = "string",
+    override var defaultValue: String = "",
+    override var indexed: Option[Boolean] = None,
+    override var stored: Option[Boolean] = None,
+    override var docValues: Option[Boolean] = None,
+    override var sortMissingFirst: Option[Boolean] = None,
+    override var sortMissingLast: Option[Boolean] = None,
+    override var multiValued: Option[Boolean] = None,
+    override var omitNorms: Option[Boolean] = None,
+    override var omitTermFreqAndPositions: Option[Boolean] = None,
+    override var omitPositions: Option[Boolean] = None,
+    override var termVectors: Option[Boolean] = None,
+    override var termPositions: Option[Boolean] = None,
+    override var termOffsets: Option[Boolean] = None,
+    override var termPayloads: Option[Boolean] = None,
+    override var required: Option[Boolean] = None) extends FieldDefinition with FieldOptions {
+}
 
 /**
  * Properties for field definitions
@@ -53,62 +54,62 @@ sealed trait FieldDefinition {
    * The name of the fieldType for this field. This will be found in the "name" attribute on the fieldType definition.
    * Every field must have a type.
    */
-  val fieldType: String
+  var fieldType: String
 
   /**
-   * A default value that will be added automatically to any document that does not have a value in this field when it
+   * A default varue that will be added automatically to any document that does not have a varue in this field when it
    * is indexed.  If this property is not specified, there is no default.
    */
-  val defaultValue: String = ""
+  var defaultValue: String
 }
 
 /**
  * Override properties for field definitions
  *
- * All of these have default values in Solr if omitted
+ * All of these have default varues in Solr if omitted
  *
  * @see https://cwiki.apache.org/confluence/display/solr/Defining+Fields#DefiningFields-OptionalFieldTypeOverrideProperties
  */
 trait FieldOptions {
 
   /**
-   * If true, the value of the field can be used in queries to retrieve matching documents
+   * If true, the varue of the field can be used in queries to retrieve matching documents
    */
-  val indexed: Option[Boolean] = None
+  var indexed: Option[Boolean]
 
   /**
-   * If true, the actual value of the field can be retrieved by queries
+   * If true, the actual varue of the field can be retrieved by queries
    */
-  val stored: Option[Boolean] = None
+  var stored: Option[Boolean]
 
   /**
-   * If true, the value of the field will be put in a column-oriented DocValues structure
+   * If true, the varue of the field will be put in a column-oriented Docvarues structure
    */
-  val docValues: Option[Boolean] = None
-
-  /**
-   * Control the placement of documents when a sort field is not present. As of Solr 3.5, these work for all numeric
-   * fields, including Trie and date fields
-   */
-  val sortMissingFirst: Option[Boolean] = None
+  var docValues: Option[Boolean]
 
   /**
    * Control the placement of documents when a sort field is not present. As of Solr 3.5, these work for all numeric
    * fields, including Trie and date fields
    */
-  val sortMissingLast: Option[Boolean] = None
+  var sortMissingFirst: Option[Boolean]
 
   /**
-   * If true, indicates that a single document might contain multiple values for this field type
+   * Control the placement of documents when a sort field is not present. As of Solr 3.5, these work for all numeric
+   * fields, including Trie and date fields
    */
-  val multiValued: Option[Boolean] = None
+  var sortMissingLast: Option[Boolean]
+
+  /**
+   * If true, indicates that a single document might contain multiple varues for this field type
+   */
+  var multiValued: Option[Boolean]
 
   /**
    * If true, omits the norms associated with this field (this disables length normalization and index-time boosting
    * for the field, and saves some memory). Defaults to true for all primitive (non-analyzed) field types, such as int,
    * float, data, bool, and string. Only full-text fields or fields that need an index-time boost need norms.
    */
-  val omitNorms: Option[Boolean] = None
+  var omitNorms: Option[Boolean]
 
   /**
    * If true, omits term frequency, positions, and payloads from postings for this field. This can be a performance
@@ -116,12 +117,12 @@ trait FieldOptions {
    * Queries that rely on position that are issued on a field with this option will silently fail to find documents.
    * This property defaults to true for all fields that are not text fields.
    */
-  val omitTermFreqAndPositions: Option[Boolean] = None
+  var omitTermFreqAndPositions: Option[Boolean]
 
   /**
    * Similar to omitTermFreqAndPositions but preserves term frequency information
    */
-  val omitPositions: Option[Boolean] = None
+  var omitPositions: Option[Boolean]
 
   /**
    * These options instruct Solr to maintain full term vectors for each document, optionally including position, offset
@@ -129,7 +130,7 @@ trait FieldOptions {
    * and other ancillary functionality, but impose a substantial cost in terms of index size. They are not necessary
    * for typical uses of Solr.
    */
-  val termVectors: Option[Boolean] = None
+  var termVectors: Option[Boolean]
 
   /**
    * These options instruct Solr to maintain full term vectors for each document, optionally including position, offset
@@ -137,7 +138,7 @@ trait FieldOptions {
    * and other ancillary functionality, but impose a substantial cost in terms of index size. They are not necessary
    * for typical uses of Solr.
    */
-  val termPositions: Option[Boolean] = None
+  var termPositions: Option[Boolean]
 
   /**
    * These options instruct Solr to maintain full term vectors for each document, optionally including position, offset
@@ -145,7 +146,7 @@ trait FieldOptions {
    * and other ancillary functionality, but impose a substantial cost in terms of index size. They are not necessary
    * for typical uses of Solr.
    */
-  val termOffsets: Option[Boolean] = None
+  var termOffsets: Option[Boolean]
 
   /**
    * These options instruct Solr to maintain full term vectors for each document, optionally including position, offset
@@ -153,11 +154,11 @@ trait FieldOptions {
    * and other ancillary functionality, but impose a substantial cost in terms of index size. They are not necessary
    * for typical uses of Solr.
    */
-  val termPayloads: Option[Boolean] = None
+  var termPayloads: Option[Boolean]
 
   /**
-   * Instructs Solr to reject any attempts to add a document which does not have a value for this field. This property
+   * Instructs Solr to reject any attempts to add a document which does not have a varue for this field. This property
    * defaults to false.
    */
-  val required: Option[Boolean] = None
+  var required: Option[Boolean]
 }
