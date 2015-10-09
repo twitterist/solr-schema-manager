@@ -2,8 +2,6 @@ package org.twitterist.utils.solr.schemamanager.dsl
 
 import org.twitterist.utils.solr.schemamanager.schema.Field
 
-case class FieldProperty(var value: Boolean = true) extends AnyRef
-
 class FieldBuilder(dynamic: Boolean, name: String) {
 
   var field: Field = Field(dynamic, name)

@@ -8,7 +8,21 @@
 Example
 -------
 
-TBD...
+The main part of the schema configuration can be done in an easy Scala 
+[DSL](https://en.wikipedia.org/wiki/Domain-specific_language). An example could look like the following
+
+```scala
+import org.twitterist.utils.solr.schemamanager.dsl._
+import org.twitterist.utils.solr.schemamanager.SchemaManager
+
+val schemaManager = SchemaManager("http://localhost:8983/solr/gettingstarted")
+
+add field("name") withDefault "John Doe" is required
+add field("active") withType "boolean" withDefault "true" is stored isNot indexed isNot required
+add dynamicField("*_ext") withType "strings" isNot indexed is stored
+
+commit
+```
 
 Installation
 ------------

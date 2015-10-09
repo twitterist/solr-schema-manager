@@ -1,5 +1,6 @@
 package org.twitterist.utils.solr.schemamanager
 
+import org.twitterist.utils.solr.schemamanager.dsl.FieldBuilder
 import org.twitterist.utils.solr.schemamanager.schema._
 
 /**
@@ -11,6 +12,20 @@ trait SchemaOperations {
    * Holds a list of added field objects
    */
   protected var fields: List[Field] = List()
+
+  /**
+   * Adds a new DSL field definition to schema
+   *
+   * @see https://cwiki.apache.org/confluence/display/solr/Schema+API#SchemaAPI-AddaNewField
+   *
+   * @param fb The file dbuilder instance from the DSL configuration
+   *
+   * @return Own [[SchemaOperations]] instance to ensure fluid interface
+   */
+  def add(fb: FieldBuilder): SchemaOperations = {
+    //TODO: implementation
+    this
+  }
 
   /**
    * Adds a new field definition to schema
