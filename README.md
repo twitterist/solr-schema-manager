@@ -15,13 +15,14 @@ The main part of the schema configuration can be done in an easy Scala
 import org.twitterist.utils.solr.schemamanager.dsl._
 import org.twitterist.utils.solr.schemamanager.SchemaManager
 
-val schemaManager = SchemaManager("http://localhost:8983/solr/gettingstarted")
+val sm = SchemaManager("http://localhost:8983/solr/gettingstarted")
 
-add field("name") withDefault "John Doe" is required
-add field("active") withType "boolean" withDefault "true" is stored isNot indexed isNot required
-add dynamicField("*_ext") withType "strings" isNot indexed is stored
+sm.add field("name") withDefault "John Doe" is required
+sm.add field("active") withType "boolean" withDefault "true" is stored isNot indexed 
+sm.add field("age") withType "integer" isNot required
+sm.add dynamicField("*_ext") withType "strings" isNot indexed is stored
 
-commit
+sm.commit
 ```
 
 Installation
