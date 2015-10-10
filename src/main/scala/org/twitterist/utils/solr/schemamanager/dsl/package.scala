@@ -1,30 +1,26 @@
 package org.twitterist.utils.solr.schemamanager
 
-/**
- * Package for schema management DSL
+/** Package for schema management DSL
  */
 package object dsl {
 
-  /**
-   * Creates a FieldBuilder instance for a static field
+  /** Creates a FieldBuilder instance for a static field
    *
-   * @param name The name of the field
-   * @return a FieldBuilder instance
+   *  @param name The name of the field
+   *  @return a FieldBuilder instance
    */
   def field(name: String): FieldBuilder = new FieldBuilder(false, name)
 
-  /**
-   * Creates a FieldBuilder instance for a dynamic field
+  /** Creates a FieldBuilder instance for a dynamic field
    *
-   * @param name The name of the field
-   * @return a FieldBuilder instance
+   *  @param name The name of the field
+   *  @return a FieldBuilder instance
    */
   def dynamicField(name: String): FieldBuilder = new FieldBuilder(true, name)
 
-  /**
-   * Abstract class for field property definition
+  /** Abstract class for field property definition
    *
-   * @param value The boolean value of the field option
+   *  @param value The boolean value of the field option
    */
   abstract case class FieldProperty(var value: Boolean = true) extends AnyRef
 

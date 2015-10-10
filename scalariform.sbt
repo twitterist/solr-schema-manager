@@ -11,3 +11,4 @@ ScalariformKeys.preferences := ScalariformKeys.preferences.value
   .setPreference(RewriteArrowSymbols, false)
   .setPreference(SpaceBeforeColon, false)
   .setPreference(SpaceInsideParentheses, false)
+  .setPreference(MultilineScaladocCommentsStartOnFirstLine, true)
